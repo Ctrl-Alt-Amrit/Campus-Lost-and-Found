@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lostfound.controller.DetailController"
+            styleClass="screen-shell">
+    <top>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="30" right="30" bottom="14" left="30" />
+            </padding>
+            <VBox spacing="12" styleClass="surface-card">
+                <Label styleClass="section-kicker" text="Item Review" />
+                <Label styleClass="page-title" text="Inspect the selected record" />
+                <Label styleClass="panel-note" text="Use this screen to verify the description, location, and image before deciding whether to submit a claim." wrapText="true" />
+            </VBox>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="24">
+            <padding>
+                <Insets top="0" right="30" bottom="22" left="30" />
+            </padding>
+
+            <VBox prefWidth="330" spacing="14" styleClass="surface-card">
+                <Label styleClass="section-title" text="Image Preview" />
+                <VBox alignment="CENTER" prefHeight="340" styleClass="preview-shell">
+                    <ImageView fx:id="itemImageView" fitHeight="280" fitWidth="260" preserveRatio="true" />
+                </VBox>
+                <Label fx:id="imageStatusLabel" styleClass="muted-label" text="No image available" wrapText="true" />
+            </VBox>
+
+            <VBox spacing="16" styleClass="surface-card">
+                <Label fx:id="titleLabel" styleClass="detail-title" wrapText="true" />
+                <HBox spacing="10">
+                    <Label fx:id="typeLabel" text="TYPE" />
+                    <Label fx:id="statusLabel" text="STATUS" />
+                </HBox>
+
+                <GridPane hgap="16" vgap="12">
+                    <Label styleClass="metric-label" text="Location" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Label fx:id="locationLabel" styleClass="detail-value" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <Label styleClass="metric-label" text="Date" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <Label fx:id="dateLabel" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                </GridPane>
+
+                <Label styleClass="section-title" text="Description" />
+                <ScrollPane fitToWidth="true" prefHeight="180" prefWidth="450">
+                    <content>
+                        <Label fx:id="descriptionLabel" styleClass="detail-body" wrapText="true" />
+                    </content>
+                </ScrollPane>
+                <Label fx:id="claimHintLabel" styleClass="inline-status" text="Claim availability will appear here." wrapText="true" />
+                <Region VBox.vgrow="ALWAYS" />
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12">
+            <padding>
+                <Insets top="0" right="30" bottom="30" left="30" />
+            </padding>
+            <Button onAction="#handleBack" styleClass="secondary-button" text="Back to Search" />
+            <Button onAction="#handleDashboard" styleClass="secondary-button" text="Dashboard" />
+            <Button fx:id="claimButton" onAction="#handleClaimItem" styleClass="primary-button" text="Claim Item" />
+        </HBox>
+    </bottom>
+</BorderPane>

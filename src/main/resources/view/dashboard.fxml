@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lostfound.controller.DashboardController"
+            styleClass="screen-shell">
+    <top>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="30" right="30" bottom="14" left="30" />
+            </padding>
+            <VBox spacing="12" styleClass="surface-card dashboard-hero">
+                <Label styleClass="section-kicker" text="Overview" />
+                <Label fx:id="welcomeLabel" styleClass="page-title" text="Welcome" />
+                <Label styleClass="panel-note"
+                       text="Monitor open records, keep your reports organized, and jump into the next action from here."
+                       wrapText="true" />
+                <HBox spacing="10" styleClass="action-bar">
+                    <Button onAction="#handleReportLost" styleClass="primary-button" text="Report Lost" />
+                    <Button onAction="#handleReportFound" styleClass="primary-button" text="Report Found" />
+                    <Button onAction="#handleSearchItems" styleClass="secondary-button" text="Search Records" />
+                    <Button fx:id="adminButton" managed="false" onAction="#handleAdminPanel" styleClass="secondary-button" text="Admin Panel" visible="false" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="0" right="30" bottom="20" left="30" />
+            </padding>
+
+            <GridPane hgap="18" vgap="18">
+                <VBox spacing="8" styleClass="surface-card metric-card lost-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label styleClass="metric-label" text="OPEN LOST ITEMS" />
+                    <Label fx:id="lostCountLabel" styleClass="metric-number" text="0" />
+                    <Label styleClass="metric-copy" text="Items still waiting to be recovered." wrapText="true" />
+                </VBox>
+
+                <VBox spacing="8" styleClass="surface-card metric-card found-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label styleClass="metric-label" text="OPEN FOUND ITEMS" />
+                    <Label fx:id="foundCountLabel" styleClass="metric-number" text="0" />
+                    <Label styleClass="metric-copy" text="Recently turned-in belongings ready to match." wrapText="true" />
+                </VBox>
+
+                <VBox spacing="8" styleClass="surface-card metric-card reports-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label styleClass="metric-label" text="MY REPORTS" />
+                    <Label fx:id="myReportsLabel" styleClass="metric-number" text="0" />
+                    <Label styleClass="metric-copy" text="Everything you have submitted so far." wrapText="true" />
+                </VBox>
+
+                <VBox spacing="8" styleClass="surface-card metric-card claims-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label styleClass="metric-label" text="MY CLAIMS" />
+                    <Label fx:id="myClaimsLabel" styleClass="metric-number" text="0" />
+                    <Label styleClass="metric-copy" text="Claim requests you have already sent." wrapText="true" />
+                </VBox>
+            </GridPane>
+
+            <HBox spacing="14">
+                <VBox prefWidth="300" spacing="8" styleClass="command-card">
+                    <Label styleClass="section-title" text="File a report" />
+                    <Label styleClass="panel-note" text="Add the item type, location, date, description, and an optional photo." wrapText="true" />
+                    <HBox spacing="8">
+                        <Button onAction="#handleReportLost" styleClass="secondary-button" text="Lost" />
+                        <Button onAction="#handleReportFound" styleClass="secondary-button" text="Found" />
+                    </HBox>
+                </VBox>
+
+                <VBox prefWidth="300" spacing="8" styleClass="command-card">
+                    <Label styleClass="section-title" text="Search first" />
+                    <Label styleClass="panel-note" text="Check whether the item is already listed before creating a duplicate record." wrapText="true" />
+                    <Button onAction="#handleSearchItems" styleClass="secondary-button" text="Open Search" />
+                </VBox>
+
+                <VBox prefWidth="300" spacing="8" styleClass="command-card">
+                    <Label styleClass="section-title" text="Keep records clean" />
+                    <Label styleClass="panel-note" text="Resolved items and approved claims stay visible with clear status labels." wrapText="true" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="14">
+            <padding>
+                <Insets top="0" right="30" bottom="30" left="30" />
+            </padding>
+            <Button onAction="#handleLogout" styleClass="secondary-button" text="Logout" />
+        </HBox>
+    </bottom>
+</BorderPane>

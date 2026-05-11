@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lostfound.controller.ReportController"
+            styleClass="screen-shell">
+    <top>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="30" right="30" bottom="14" left="30" />
+            </padding>
+            <VBox spacing="12" styleClass="surface-card">
+                <Label styleClass="section-kicker" text="Report Center" />
+                <Label styleClass="page-title" text="Create a lost or found report" />
+                <Label styleClass="panel-note" text="Use clear titles, locations, and descriptions so the right person can identify the item quickly." wrapText="true" />
+            </VBox>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="24">
+            <padding>
+                <Insets top="0" right="30" bottom="30" left="30" />
+            </padding>
+
+            <VBox spacing="18" styleClass="surface-card">
+                <Label styleClass="section-title" text="Item Information" />
+                <GridPane hgap="14" vgap="16">
+                    <Label styleClass="metric-label" text="Type" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="typeComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label styleClass="metric-label" text="Title" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="titleField" prefWidth="420" promptText="Enter item title" />
+                        <Label fx:id="titleCountLabel" styleClass="counter-label" text="0 / 150" />
+                    </VBox>
+
+                    <Label styleClass="metric-label" text="Location" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="locationField" prefWidth="420" promptText="Where was it lost or found?" />
+                        <Label fx:id="locationCountLabel" styleClass="counter-label" text="0 / 150" />
+                    </VBox>
+
+                    <Label styleClass="metric-label" text="Date" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <DatePicker fx:id="itemDatePicker" prefWidth="220" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <Label styleClass="metric-label" text="Description" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <VBox spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextArea fx:id="descriptionArea" prefHeight="210" prefWidth="420" promptText="Describe the item"
+                                  wrapText="true" />
+                        <Label fx:id="descriptionCountLabel" styleClass="counter-label" text="0 / 500" />
+                    </VBox>
+                </GridPane>
+
+                <Label fx:id="formStatusLabel" styleClass="inline-status" text="Complete the required fields to submit the report." wrapText="true" />
+
+                <HBox alignment="CENTER_RIGHT" spacing="12">
+                    <Button onAction="#handleBack" styleClass="secondary-button" text="Back" />
+                    <Button fx:id="submitReportButton" onAction="#handleSubmitReport" styleClass="primary-button" text="Submit Report" />
+                </HBox>
+            </VBox>
+
+            <VBox prefWidth="300" spacing="16" styleClass="surface-card">
+                <Label styleClass="section-title" text="Image Preview" />
+                <Label styleClass="panel-note" text="Upload a clear photo if you have one. The file is copied into the project images folder and linked to this item." wrapText="true" />
+                <Button onAction="#handleChooseImage" styleClass="secondary-button" text="Upload Image" />
+                <Label fx:id="selectedImageLabel" styleClass="muted-label" text="No image selected" wrapText="true" />
+                <VBox alignment="CENTER" prefHeight="280" prefWidth="250" styleClass="preview-shell">
+                    <ImageView fx:id="previewImageView" fitHeight="240" fitWidth="240" preserveRatio="true" />
+                </VBox>
+
+                <VBox spacing="8" styleClass="hero-note">
+                    <Label styleClass="hero-note-title" text="Helpful tip" />
+                    <Label styleClass="hero-note-copy" text="Mention colors, brand names, or identifying marks. That usually makes search results far more useful." wrapText="true" />
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

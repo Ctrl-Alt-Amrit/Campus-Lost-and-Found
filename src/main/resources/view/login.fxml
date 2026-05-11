@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lostfound.controller.LoginController"
+            styleClass="screen-shell">
+    <center>
+        <HBox alignment="CENTER" spacing="28">
+            <padding>
+                <Insets top="36" right="36" bottom="36" left="36" />
+            </padding>
+
+            <VBox prefWidth="390" spacing="18" styleClass="hero-panel">
+                <Label styleClass="section-kicker" text="Campus Connect" />
+                <Label styleClass="hero-title" text="Reunite people and belongings with a cleaner campus workflow." wrapText="true" />
+                <Label styleClass="hero-copy"
+                       text="Log reports quickly, browse current matches, and keep campus recovery organized in one lightweight desktop app."
+                       wrapText="true" />
+
+                <VBox spacing="12">
+                    <VBox spacing="6" styleClass="hero-note">
+                        <Label styleClass="hero-note-title" text="Track both lost and found reports" />
+                        <Label styleClass="hero-note-copy" text="Keep search and reporting in the same flow for students and staff." wrapText="true" />
+                    </VBox>
+                    <VBox spacing="6" styleClass="hero-note">
+                        <Label styleClass="hero-note-title" text="Preview images before submitting" />
+                        <Label styleClass="hero-note-copy" text="Make it easier to identify backpacks, bottles, IDs, and personal electronics." wrapText="true" />
+                    </VBox>
+                    <VBox spacing="6" styleClass="hero-note">
+                        <Label styleClass="hero-note-title" text="Claim items with a clear status trail" />
+                        <Label styleClass="hero-note-copy" text="Keep simple accountability in place without overcomplicating the workflow." wrapText="true" />
+                    </VBox>
+                    <VBox spacing="6" styleClass="hero-note">
+                        <Label styleClass="hero-note-title" text="Review claims from the admin panel" />
+                        <Label styleClass="hero-note-copy" text="Approve matches, reject invalid requests, resolve reports, and manage campus accounts." wrapText="true" />
+                    </VBox>
+                </VBox>
+            </VBox>
+
+            <VBox maxWidth="540" prefWidth="540" spacing="16" styleClass="surface-card auth-card">
+                <Label styleClass="section-kicker" text="Access Portal" />
+                <Label styleClass="page-title" text="Campus Lost and Found System" wrapText="true" />
+                <Label styleClass="panel-note"
+                       text="Use your account to file reports, search existing records, and submit claims when you spot a match."
+                       wrapText="true" />
+
+                <TabPane fx:id="authTabPane" prefHeight="490" prefWidth="500" styleClass="auth-tabs" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab fx:id="loginTab" text="Login">
+                            <content>
+                                <VBox spacing="18">
+                                    <padding>
+                                        <Insets top="24" right="24" bottom="24" left="24" />
+                                    </padding>
+                                    <Label styleClass="section-title" text="Sign in to continue" />
+                                    <GridPane hgap="12" vgap="14">
+                                        <Label styleClass="metric-label" text="Email" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                        <TextField fx:id="loginEmailField" prefWidth="280" promptText="Enter your email"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <Label styleClass="metric-label" text="Password" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <PasswordField fx:id="loginPasswordField" prefWidth="280" promptText="Enter your password"
+                                                       GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    </GridPane>
+                                    <HBox alignment="CENTER_RIGHT">
+                                        <Button defaultButton="true" onAction="#handleLogin" styleClass="primary-button" text="Login" />
+                                    </HBox>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        <Tab text="Admin">
+                            <content>
+                                <VBox spacing="18">
+                                    <padding>
+                                        <Insets top="24" right="24" bottom="24" left="24" />
+                                    </padding>
+                                    <Label styleClass="section-title" text="Admin panel access" />
+                                    <GridPane hgap="12" vgap="14">
+                                        <Label styleClass="metric-label" text="Admin Email" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                        <TextField fx:id="adminEmailField" prefWidth="280" promptText="Enter admin email"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <Label styleClass="metric-label" text="Password" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <PasswordField fx:id="adminPasswordField" prefWidth="280" promptText="Enter password"
+                                                       GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    </GridPane>
+                                    <Label styleClass="panel-note"
+                                           text="Admin accounts can review reports, approve or reject claims, resolve items, remove invalid entries, and manage users."
+                                           wrapText="true" />
+                                    <HBox alignment="CENTER_RIGHT">
+                                        <Button defaultButton="true" onAction="#handleAdminLogin" styleClass="primary-button" text="Open Admin Panel" />
+                                    </HBox>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        <Tab text="Register">
+                            <content>
+                                <VBox spacing="18">
+                                    <padding>
+                                        <Insets top="24" right="24" bottom="24" left="24" />
+                                    </padding>
+                                    <Label styleClass="section-title" text="Create a new account" />
+                                    <GridPane hgap="12" vgap="14">
+                                        <Label styleClass="metric-label" text="Full Name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                        <TextField fx:id="registerNameField" prefWidth="280" promptText="Enter your full name"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                        <Label styleClass="metric-label" text="Email" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <TextField fx:id="registerEmailField" prefWidth="280" promptText="Enter your campus email"
+                                                   GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label styleClass="metric-label" text="Password" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                        <PasswordField fx:id="registerPasswordField" prefWidth="280" promptText="Create a password"
+                                                       GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label styleClass="metric-label" text="Confirm Password" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                        <PasswordField fx:id="registerConfirmPasswordField" prefWidth="280" promptText="Confirm password"
+                                                       GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    </GridPane>
+                                    <HBox alignment="CENTER_RIGHT">
+                                        <Button defaultButton="true" onAction="#handleRegister" styleClass="primary-button" text="Register" />
+                                    </HBox>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lostfound.controller.SearchController"
+            styleClass="screen-shell">
+    <top>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="30" right="30" bottom="14" left="30" />
+            </padding>
+            <VBox spacing="12" styleClass="surface-card">
+                <Label styleClass="section-kicker" text="Discovery" />
+                <Label styleClass="page-title" text="Search lost and found records" />
+                <Label styleClass="panel-note" text="Look up items by title or description, then open the detail screen to inspect images, status, and claim options." wrapText="true" />
+                <HBox spacing="10">
+                    <TextField fx:id="keywordField" prefWidth="500" promptText="Search by title or description" />
+                    <Button onAction="#handleSearch" styleClass="primary-button" text="Search" />
+                    <Button fx:id="viewDetailsButton" onAction="#handleViewDetails" styleClass="secondary-button" text="View Details" />
+                    <Button onAction="#handleBack" styleClass="secondary-button" text="Back" />
+                </HBox>
+                <Label fx:id="resultsLabel" styleClass="muted-label" text="0 item(s) found" />
+                <Label fx:id="selectionLabel" styleClass="inline-status" text="Select a result to inspect the full record." wrapText="true" />
+            </VBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="12">
+            <padding>
+                <Insets top="0" right="30" bottom="30" left="30" />
+            </padding>
+            <VBox spacing="10" styleClass="surface-card">
+                <Label styleClass="section-title" text="Matching Items" />
+                <ListView fx:id="resultsListView" prefHeight="520" styleClass="result-list" />
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

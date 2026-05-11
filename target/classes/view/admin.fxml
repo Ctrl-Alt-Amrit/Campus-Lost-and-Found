@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lostfound.controller.AdminController"
+            styleClass="screen-shell">
+    <top>
+        <VBox spacing="16">
+            <padding>
+                <Insets top="24" right="28" bottom="12" left="28" />
+            </padding>
+
+            <VBox spacing="10" styleClass="surface-card admin-hero">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label styleClass="section-kicker" text="Administration" />
+                        <Label styleClass="page-title" text="Campus Lost and Found Control Panel" wrapText="true" />
+                        <Label fx:id="adminNameLabel" styleClass="panel-note" text="Signed in as admin" />
+                    </VBox>
+                    <Button onAction="#handleRefresh" styleClass="secondary-button" text="Refresh" />
+                </HBox>
+
+                <GridPane hgap="12" vgap="12">
+                    <VBox spacing="4" styleClass="admin-metric" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label styleClass="metric-label" text="REPORTS" />
+                        <Label fx:id="reportCountLabel" styleClass="metric-number" text="0" />
+                    </VBox>
+                    <VBox spacing="4" styleClass="admin-metric" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label styleClass="metric-label" text="PENDING CLAIMS" />
+                        <Label fx:id="pendingClaimsLabel" styleClass="metric-number" text="0" />
+                    </VBox>
+                    <VBox spacing="4" styleClass="admin-metric" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <Label styleClass="metric-label" text="USERS" />
+                        <Label fx:id="usersCountLabel" styleClass="metric-number" text="0" />
+                    </VBox>
+                    <VBox spacing="4" styleClass="admin-metric" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <Label styleClass="metric-label" text="RESOLVED" />
+                        <Label fx:id="resolvedCountLabel" styleClass="metric-number" text="0" />
+                    </VBox>
+                </GridPane>
+            </VBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="12">
+            <padding>
+                <Insets top="0" right="28" bottom="16" left="28" />
+            </padding>
+
+            <TabPane styleClass="admin-tabs" tabClosingPolicy="UNAVAILABLE">
+                <tabs>
+                    <Tab text="Reports">
+                        <content>
+                            <VBox spacing="12" styleClass="admin-section">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label styleClass="section-title" text="Item Reports" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="markResolvedButton" onAction="#handleMarkResolved" styleClass="success-button" text="Mark Resolved" />
+                                    <Button fx:id="removeReportButton" onAction="#handleRemoveReport" styleClass="danger-button" text="Remove Entry" />
+                                </HBox>
+                                <Label fx:id="reportSelectionLabel" styleClass="selected-record-note" text="Select a report to manage it." wrapText="true" />
+                                <TableView fx:id="reportsTable" prefHeight="410">
+                                    <columns>
+                                        <TableColumn fx:id="reportIdColumn" prefWidth="58" text="ID" />
+                                        <TableColumn fx:id="reportTypeColumn" prefWidth="78" text="Type" />
+                                        <TableColumn fx:id="reportTitleColumn" prefWidth="190" text="Title" />
+                                        <TableColumn fx:id="reportReporterColumn" prefWidth="230" text="Reported By" />
+                                        <TableColumn fx:id="reportLocationColumn" prefWidth="150" text="Location" />
+                                        <TableColumn fx:id="reportDateColumn" prefWidth="120" text="Date" />
+                                        <TableColumn fx:id="reportStatusColumn" prefWidth="95" text="Status" />
+                                        <TableColumn fx:id="reportClaimsColumn" prefWidth="75" text="Claims" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="Claims">
+                        <content>
+                            <VBox spacing="12" styleClass="admin-section">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label styleClass="section-title" text="Claim Review" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="approveClaimButton" onAction="#handleApproveClaim" styleClass="success-button" text="Approve" />
+                                    <Button fx:id="rejectClaimButton" onAction="#handleRejectClaim" styleClass="danger-button" text="Reject" />
+                                </HBox>
+                                <Label fx:id="claimSelectionLabel" styleClass="selected-record-note" text="Select a pending claim to approve or reject it." wrapText="true" />
+                                <TableView fx:id="claimsTable" prefHeight="410">
+                                    <columns>
+                                        <TableColumn fx:id="claimIdColumn" prefWidth="65" text="Claim" />
+                                        <TableColumn fx:id="claimItemColumn" prefWidth="210" text="Item" />
+                                        <TableColumn fx:id="claimTypeColumn" prefWidth="78" text="Type" />
+                                        <TableColumn fx:id="claimClaimantColumn" prefWidth="240" text="Claimant" />
+                                        <TableColumn fx:id="claimReporterColumn" prefWidth="150" text="Reporter" />
+                                        <TableColumn fx:id="claimItemStatusColumn" prefWidth="100" text="Item Status" />
+                                        <TableColumn fx:id="claimStatusColumn" prefWidth="100" text="Claim Status" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="Users">
+                        <content>
+                            <VBox spacing="12" styleClass="admin-section">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label styleClass="section-title" text="User Management" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="makeAdminButton" onAction="#handleMakeAdmin" styleClass="secondary-button" text="Make Admin" />
+                                    <Button fx:id="makeUserButton" onAction="#handleMakeUser" styleClass="secondary-button" text="Make User" />
+                                    <Button fx:id="activateUserButton" onAction="#handleActivateUser" styleClass="success-button" text="Activate" />
+                                    <Button fx:id="disableUserButton" onAction="#handleDisableUser" styleClass="danger-button" text="Disable" />
+                                </HBox>
+                                <Label fx:id="userSelectionLabel" styleClass="selected-record-note" text="Select a user to manage role or account status." wrapText="true" />
+                                <TableView fx:id="usersTable" prefHeight="410">
+                                    <columns>
+                                        <TableColumn fx:id="userIdColumn" prefWidth="70" text="ID" />
+                                        <TableColumn fx:id="userNameColumn" prefWidth="210" text="Name" />
+                                        <TableColumn fx:id="userEmailColumn" prefWidth="260" text="Email" />
+                                        <TableColumn fx:id="userRoleColumn" prefWidth="110" text="Role" />
+                                        <TableColumn fx:id="userStatusColumn" prefWidth="120" text="Status" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12">
+            <padding>
+                <Insets top="0" right="28" bottom="24" left="28" />
+            </padding>
+            <Button onAction="#handleUserDashboard" styleClass="secondary-button" text="User Dashboard" />
+            <Button onAction="#handleLogout" styleClass="secondary-button" text="Logout" />
+        </HBox>
+    </bottom>
+</BorderPane>
